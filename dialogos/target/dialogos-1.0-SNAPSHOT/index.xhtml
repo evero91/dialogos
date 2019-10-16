@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:commandButton value="Dialogo 1" onclick="PF('dlg1').show()"/>
+        </h:form>
+
+        <h:form id="dlg1">
+            <p:dialog widgetVar="dlg1" header="Dialogo 1" modal="true">
+                <p:outputPanel id="pnlDlg1">
+                    <p:dataTable value="#{indexBean.misPojos}" var="miPojo">
+                        <p:column headerText="id">
+                            #{miPojo.id}
+                        </p:column>
+                        <p:column headerText="valor">
+                            #{miPojo.valor}
+                        </p:column>
+                    </p:dataTable>
+
+                    <p:commandButton value="Dialogo 2" action="#{indexBean.mostrarDialogo2}" oncomplete="PF('dlg2').show()" update=":dlg2"/>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+
+        <h:form id="dlg2">
+            <p:dialog widgetVar="dlg2" header="Dialogo2" modal="true">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="id" for="txtId"/>
+                    <p:inputText id="txtId" value="#{indexBean.pojo.id}"/>
+                    <p:outputLabel value="valor" for="txtValor"/>
+                    <p:inputText id="txtValor" value="#{indexBean.pojo.valor}"/>
+                </p:panelGrid>
+                <p:commandButton value="Agregar" action="#{indexBean.agregarPojo}" oncomplete="PF('dlg2').hide()" update=":dlg1:pnlDlg1"/>
+            </p:dialog>
+        </h:form>
+    </h:body>
+</html>
+
