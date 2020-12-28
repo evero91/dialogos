@@ -26,19 +26,13 @@ public class IndexBean implements Serializable {
     @PostConstruct
     public void init() {
         misPojos = new ArrayList<>();
-        pojo = new MiPojo();
-        MiPojo pojo1 = new MiPojo(1, "Uno");
-        MiPojo pojo2 = new MiPojo(2, "Dos");
-        MiPojo pojo3 = new MiPojo(3, "Tres");
-        MiPojo pojo4 = new MiPojo(4, "Cuatro");
-        MiPojo pojo5 = new MiPojo(5, "Cinco");
-        misPojos.add(pojo1);
-        misPojos.add(pojo2);
-        misPojos.add(pojo3);
-        misPojos.add(pojo4);
-        misPojos.add(pojo5);
+
+        for (int i = 0; i < 100; i++) {
+            MiPojo p = new MiPojo((i + 1), "Valor " + (i + 1));
+            misPojos.add(p);
+        }
     }
-    
+
     public void mostrarDialogo2() {
         pojo = new MiPojo();
     }
